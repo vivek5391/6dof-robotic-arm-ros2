@@ -1,0 +1,23 @@
+﻿# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C / C++ build artifacts
+*.o
+*.so
+*.a
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ROS / Colcon build artifacts
+build/
+install/
+log/
