@@ -12,7 +12,6 @@ const int NUM_SERVOS = 6;
   const int SERVO_PINS[NUM_SERVOS] = {3, 5, 6, 9, 10, 11};
 #endif
 
-const int MIN_DEG[NUM_SERVOS] = {  0,  60,  25,   0,  30,  61};
 const int MIN_DEG[NUM_SERVOS] = {  0,  60,  25,   0,  30,  90};
 const int MAX_DEG[NUM_SERVOS] = {180, 165, 160, 180, 150, 127};
 
