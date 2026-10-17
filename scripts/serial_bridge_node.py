@@ -6,6 +6,7 @@ import numpy as np
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import JointState
+from ament_index_python.packages import get_package_share_directory
 
 try:
     import serial
@@ -15,7 +16,11 @@ except ImportError:
 
 
 JOINT_ORDER = ['joint_1', 'joint_2', 'joint_3', 'joint_4', 'joint_5', 'gripper_joint']
-CALIB_PATH = '/home/vivek/robot_ws/src/arm_description/config/servo_calibration.json'
+CALIB_PATH = os.path.join(
+    get_package_share_directory('arm_description'),
+    'config',
+    'servo_calibration.json',
+)
 
 
 class SerialBridgeNode(Node):
@@ -32,7 +37,6 @@ class SerialBridgeNode(Node):
 
         self.home_offsets = [0, 0, 0, 0, 0, 0]
         self.directions   = [1, 1, 1, 1, 1, 1]
-        self.min_deg      = [0, 60, 25, 0, 30, 61]
         self.min_deg      = [0, 60, 25, 0, 30, 90]
         self.max_deg      = [180, 165, 160, 180, 150, 127]
         self.load_calibration()
