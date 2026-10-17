@@ -46,8 +46,8 @@ This repository contains the full end-to-end stack:
 | Parameter | Specification | Details / Notes |
 | :--- | :--- | :--- |
 | **Degrees of Freedom** | **5-DOF Arm + 1-DOF Parallel Gripper** (6 Actuated Channels) | Waist Roll, Shoulder Pitch, Elbow Pitch, Wrist Roll, Wrist Pitch, Gripper |
-| **Maximum Reach** | **$340\text{ mm}$ (approx. $0.34\text{ m}$)** | From Base Center to Gripper TCP tip |
-| **Payload Capacity** | **$250\text{ g} - 350\text{ g}$** | Tested for picking $20\text{ mm}$ acrylic/wood cubes |
+| **Maximum Reach** | Approx. 340 mm CAD estimate | Physical TCP reach has not been independently measured |
+| **Payload Capacity** | Not verified | No measured payload result is recorded in this repository |
 | **Lower Joint Servos** | **3x TowerPro MG996R Metal Gear (55g)** | Base `J1`, Shoulder `J2`, Elbow `J3` ($11.0\text{ kg}\cdot\text{cm}$ torque @ 6V) |
 | **Upper Joint Servos** | **3x TowerPro SG90 Micro (9g) / MG90S** | Wrist Roll `J4`, Wrist Pitch `J5`, Gripper `G` ($1.8\text{ kg}\cdot\text{cm}$ torque) |
 | **Gripper Mechanism** | **4-Bar Parallelogram Linkage + 24T Spur Gears** | Jaws remain strictly parallel across the entire stroke |
