@@ -436,13 +436,13 @@ Mechanical spline alignment on servo horns rarely lands exactly on true 90°. In
 }
 ```
 
-The node [`serial_bridge_node.py`](file:///home/vivek/robot_ws/src/arm_description/scripts/serial_bridge_node.py) monitors this JSON file every 2 seconds. When you edit and save changes, it reloads them live without stopping the launch!
+The node [`serial_bridge_node.py`](scripts/serial_bridge_node.py) monitors this JSON file every 2 seconds. When you edit and save changes, it reloads them live without stopping the launch!
 
 ---
 
 ## 15. Arduino & ESP32 Firmware (`arm_servo_controller.ino`)
 
-The firmware is located at [`firmware/arm_servo_controller/arm_servo_controller.ino`](file:///home/vivek/robot_ws/src/arm_description/firmware/arm_servo_controller/arm_servo_controller.ino).
+The firmware is located at [`firmware/arm_servo_controller/arm_servo_controller.ino`](firmware/arm_servo_controller/arm_servo_controller.ino).
 
 ### Protocol Specification
 Commands are sent over USB Serial at **$115\,200\text{ baud}$** in comma-separated ASCII ending with newline `\n`:
