@@ -87,7 +87,7 @@ flowchart TD
 ## 3. Package Directory Layout
 
 ```text
-/home/vivek/robot_ws/
+~/robot_ws/
 ├── README.md                           # Symlink to src/arm_description/README.md
 ├── src/
 │   └── arm_description/
@@ -466,7 +466,7 @@ If creating a new robot or rebuilding this package from scratch, follow this exa
 ```mermaid
 flowchart TD
     Step1["Step 1: CAD Clean-Up in Fusion 360\nSeparate into rigid bodies & export as binary STLs in mm"] --> Step2
-    Step2["Step 2: Initialize ROS 2 Package\nros2 pkg create arm_description --build-type ament_python"] --> Step3
+    Step2["Step 2: Initialize ROS 2 Package\nros2 pkg create arm_description --build-type ament_cmake"] --> Step3
     Step3["Step 3: Write URDF / Xacro (arm.urdf.xacro)\nDefine world_to_base -> joint_1..5 -> mimic parallel gripper"] --> Step4
     Step4["Step 4: Configure RViz2 Launch (display.launch.py)\nrobot_state_publisher + joint_state_publisher_gui + rviz2"] --> Step5
     Step5["Step 5: Implement IK & Collision Guard (ik_interactive_node.py)\nJacobian DLS solver + floor boundary check"] --> Step6
@@ -479,7 +479,7 @@ flowchart TD
 
 ### 17.1 Build the Package
 ```bash
-cd /home/vivek/robot_ws
+cd ~/robot_ws
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install
 source install/setup.bash
@@ -487,7 +487,7 @@ source install/setup.bash
 
 ### 16.2 Launch Master System (RViz + Web Command Center + Serial Bridge)
 ```bash
-source /home/vivek/robot_ws/install/setup.bash
+source ~/robot_ws/install/setup.bash
 ros2 launch arm_description display.launch.py
 ```
 
