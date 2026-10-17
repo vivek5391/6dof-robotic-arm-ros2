@@ -4,9 +4,9 @@
 [![ROS 2](https://img.shields.io/badge/ROS%202-Humble-3498db.svg)](https://docs.ros.org/en/humble/)
 [![Simulation](https://img.shields.io/badge/3D%20Web%20Twin-Three.js-10b981.svg)](http://localhost:8080)
 [![Hardware](https://img.shields.io/badge/Microcontroller-Arduino%20%2F%20ESP32-f59e0b.svg)](https://www.arduino.cc/)
-[![Status](https://img.shields.io/badge/Status-Fully%20Calibrated%20%26%20Tested-success.svg)]()
+[![Status](https://img.shields.io/badge/Status-Project%20Documentation%20%7C%20Validation%20Pending-orange.svg)]()
 
-Complete industrial-grade **ROS 2 Humble** Digital Twin package (`arm_description`) for a custom 5-DOF articulated robot arm and 4-bar parallel-jaw gripper designed in **Autodesk Fusion 360**.
+A **ROS 2 Humble** digital-twin and hardware-control project (`arm_description`) for a custom 5-DOF articulated arm with a 1-DOF parallel-jaw gripper, designed in **Autodesk Fusion 360**. The repository includes software, CAD exports, and hardware-integration documentation; full end-to-end validation should be confirmed on the target computer and physical robot.
 
 This repository contains the full end-to-end stack:
 1. **Mathematical Kinematic Model & URDF/Xacro** with physical collision boundaries, inertial tensors, and `<ros2_control>` tags.
@@ -41,6 +41,8 @@ This repository contains the full end-to-end stack:
 
 ## 1. Robot Architecture & Specifications
 
+> **Validation note:** Treat software features, reach, payload, calibration, and hardware-control behavior as project targets unless a test result is recorded in this repository. The presence of code or documentation alone does not establish successful physical validation.
+
 | Parameter | Specification | Details / Notes |
 | :--- | :--- | :--- |
 | **Degrees of Freedom** | **5-DOF Arm + 1-DOF Parallel Gripper** (6 Actuated Channels) | Waist Roll, Shoulder Pitch, Elbow Pitch, Wrist Roll, Wrist Pitch, Gripper |
@@ -51,7 +53,7 @@ This repository contains the full end-to-end stack:
 | **Gripper Mechanism** | **4-Bar Parallelogram Linkage + 24T Spur Gears** | Jaws remain strictly parallel across the entire stroke |
 | **Gripper Stroke** | **$0.7\text{ mm}$ (Closed) to $38.7\text{ mm}$ (Wide Open)** | No finger collision or overlapping at mechanical zero |
 | **Home Position TCP** | **$X = -42.3\text{ mm}, Y = -237.6\text{ mm}, Z = 245.9\text{ mm}$** | Default upright ready pose with all servos at 90° |
-| **Operating System** | **Ubuntu 22.04 LTS / ROS 2 Humble Hawksbill** | Tested inside native Linux and WSL2 (WSLg) |
+| **Target Environment** | **Ubuntu 22.04 LTS / ROS 2 Humble Hawksbill** | Environment compatibility and launch behavior should be rechecked on the target machine |
 | **Web Server** | **Lightweight Multi-Threaded HTTP Server on Port 8080** | Pure Python standard library, zero external server dependencies |
 
 ---
@@ -264,7 +266,7 @@ Iterative updates run with a convergence tolerance $\|\mathbf{e}\| < 1.0\text{ m
 
 ## 9. Interactive 3D Web Command Center (`http://localhost:8080`)
 
-The node [`scripts/ik_interactive_node.py`](file:///home/vivek/robot_ws/src/arm_description/scripts/ik_interactive_node.py) hosts a built-in HTTP server on port `8080`.
+The node [`scripts/ik_interactive_node.py`](scripts/ik_interactive_node.py) hosts a built-in HTTP server on port `8080`.
 
 ### Key Capabilities of the Web Dashboard
 1. **Three.js 3D Workcell Viewport**: Renders all 12 STL links with smooth lighting, grid, colored cubes, and sorting bins. Left-click to rotate, right-click to pan, scroll to zoom.
@@ -423,7 +425,7 @@ $$\text{Duty Cycle } D = \left( \frac{t_{\text{pulse}}}{20\,000\,\mu\text{s}} \r
 
 ## 14. Zero-Offset Software Calibration (`servo_calibration.json`)
 
-Mechanical spline alignment on servo horns rarely lands exactly on true 90°. Instead of disassembling screws, calibrate electronically via [`config/servo_calibration.json`](file:///home/vivek/robot_ws/src/arm_description/config/servo_calibration.json):
+Mechanical spline alignment on servo horns rarely lands exactly on true 90°. Instead of disassembling screws, calibrate electronically via [`config/servo_calibration.json`](`config/servo_calibration.json`):
 
 ```json
 {
