@@ -10,6 +10,7 @@ from scipy.spatial.transform import Rotation as R
 
 import rclpy
 from rclpy.node import Node
+from ament_index_python.packages import get_package_share_directory
 from sensor_msgs.msg import JointState
 from geometry_msgs.msg import Pose, Point, Quaternion
 from visualization_msgs.msg import (
@@ -29,10 +30,12 @@ UPPER_LIMITS = np.array([ 1.57,  1.31,  1.22,  1.57,  1.05])
 GRIPPER_MIN  =  0.00
 GRIPPER_MAX  =  0.65
 
-WAYPOINTS_FILE = '/home/vivek/robot_ws/src/arm_description/config/saved_waypoints.json'
-MESH_DIR       = '/home/vivek/robot_ws/src/arm_description/meshes'
-STATIC_DIR     = '/home/vivek/robot_ws/src/arm_description/static'
-WEB_PORT       = 8080
+PACKAGE_SHARE = get_package_share_directory('arm_description')
+WAYPOINTS_DIR = os.path.join(os.path.expanduser('~'), '.ros', 'arm_description')
+WAYPOINTS_FILE = os.path.join(WAYPOINTS_DIR, 'saved_waypoints.json')
+MESH_DIR = os.path.join(PACKAGE_SHARE, 'meshes')
+STATIC_DIR = os.path.join(PACKAGE_SHARE, 'static')
+WEB_PORT = 8080
 
 
 def trans(x, y, z):
@@ -1475,6 +1478,7 @@ class IKInteractiveNode(Node):
 
     def persist_waypoints(self):
         try:
+            os.makedirs(WAYPOINTS_DIR, exist_ok=True)
             data = [{'q': [round(float(x), 4) for x in q], 'g': round(float(g), 4), 'd': float(d)} for q, g, d in self.saved_waypoints]
             with open(WAYPOINTS_FILE, 'w') as f:
                 json.dump(data, f, indent=2)
